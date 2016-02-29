@@ -1,6 +1,6 @@
 export function createStore (initialState) {
   let state = initialState
-  const subscribers = []
+  const subscribers = new Set()
 
   return {
     getState () {
@@ -19,20 +19,14 @@ export function createStore (initialState) {
         return
       }
 
-      for (const subscriber of subscribers) {
-        subscriber(state, oldState)
-      }
+      subscribers.forEach((subscriber) => subscriber(state, oldState))
     },
 
     subscribe (subscriber) {
-      subscribers.push(subscriber)
+      subscribers.add(subscriber)
 
       return function unsubscribe () {
-        const index = subscribers.indexOf(subscriber)
-
-        if (index >= 0) {
-          subscribers.splice(index, 1)
-        }
+        if (subscribers.has(subscriber)) subscribers.delete(subscriber)
       }
     }
   }
