@@ -1,0 +1,18 @@
+{
+  "name": "elfi",
+  "version": "0.1.0",
+  "description": "An elegant and lightweight Flux implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "flux",
+    "redux",
+    "state",
+    "functional",
+    "immutable"
+  ],
+  "author": "François Vaux <madx@yapok.org> (https://github.com/madx)",
+  "license": "MIT"
+}
