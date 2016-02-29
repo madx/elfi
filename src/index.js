@@ -1,15 +1,15 @@
-export function createStore (initialState) {
+export function createStore(initialState) {
   let state = initialState
   const subscribers = new Set()
 
   return {
-    getState () {
+    getState() {
       return state
     },
 
-    dispatch (action, ...args) {
-      if (typeof action !== 'function') {
-        throw new Error('action must be a function')
+    dispatch(action, ...args) {
+      if (typeof action !== "function") {
+        throw new Error("action must be a function")
       }
 
       const oldState = state
@@ -22,14 +22,14 @@ export function createStore (initialState) {
       subscribers.forEach((subscriber) => subscriber(state, oldState))
     },
 
-    subscribe (subscriber) {
+    subscribe(subscriber) {
       subscribers.add(subscriber)
 
-      return function unsubscribe () {
+      return function unsubscribe() {
         if (subscribers.has(subscriber)) {
           subscribers.delete(subscriber)
         }
       }
-    }
+    },
   }
 }

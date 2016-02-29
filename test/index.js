@@ -1,7 +1,7 @@
-import {createStore} from '../src'
-import test from 'tape'
+import { createStore } from "../src"
+import test from "tape"
 
-test('createStore', t => {
+test("createStore", t => {
   t.pass()
   t.end()
 })
