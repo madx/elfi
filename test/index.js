@@ -55,7 +55,7 @@ test("dispatch", t => {
   store.dispatch(s => s + 1)
 
   store.subscribe(() => {
-    t.fail("does not notifies subscribers if the state changes")
+    t.fail("does not notifies subscribers if the state does not change")
   })
   store.dispatch(s => s)
 
