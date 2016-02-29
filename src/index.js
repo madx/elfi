@@ -26,7 +26,9 @@ export function createStore (initialState) {
       subscribers.add(subscriber)
 
       return function unsubscribe () {
-        if (subscribers.has(subscriber)) subscribers.delete(subscriber)
+        if (subscribers.has(subscriber)) {
+          subscribers.delete(subscriber)
+        }
       }
     }
   }
