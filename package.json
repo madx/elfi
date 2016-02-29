@@ -1,8 +1,8 @@
 {
   "name": "elfi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An elegant and lightweight Flux implementation",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
     "lint": "standard src/**/*.js",
