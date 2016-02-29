@@ -1,4 +1,7 @@
 export function createStore(initialState) {
+  if (!initialState) {
+    throw new Error("Missing initial state in store creation")
+  }
   let state = initialState
   const subscribers = new Set()
 
