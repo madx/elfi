@@ -10,13 +10,13 @@ export function createStore(initialState) {
       return state
     },
 
-    dispatch(action, ...args) {
-      if (typeof action !== "function") {
-        throw new Error("action must be a function")
+    dispatch(change, ...args) {
+      if (typeof change !== "function") {
+        throw new Error("change must be a function")
       }
 
       const oldState = state
-      state = action(state, ...args)
+      state = change(state, ...args)
 
       if (state === oldState) {
         return
