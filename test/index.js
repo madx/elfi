@@ -63,3 +63,24 @@ test("dispatch", t => {
 
   t.end()
 })
+
+test("middleware", t => {
+  t.plan(4)
+
+  const setStateTo2 = () => 2
+  const changeArg = "some argument"
+  const logger = (next, state, change, ...args) => {
+    t.pass("is called when a change is dispatched")
+    t.equal(state, store.getState(),
+      "is passed the store state")
+    t.equal(change, setStateTo2,
+      "is passed the dispatched change")
+    t.equal(args[0], changeArg,
+      "is passed the dispatched change arguments")
+
+    return next(state, change, ...args)
+  }
+
+  const store = createStore(1, [ logger ])
+  store.dispatch(setStateTo2, changeArg)
+})
