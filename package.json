@@ -9,7 +9,7 @@
     "test": "babel-tape-runner test/",
     "build": "babel src --out-dir lib",
     "check": "npm run lint && npm run test",
-    "prepublish": "npm run clean && npm run check && npm run build"
+    "release": "npm run clean && npm run check && npm run build && npm run publish"
   },
   "repository": {
     "type": "git",

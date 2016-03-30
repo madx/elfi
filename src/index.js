@@ -5,15 +5,16 @@ export function createStore(initialState, middleware = []) {
   let state = initialState
   const subscribers = new Set()
 
+  // Final middleware, simply applies the change to the state
   middleware.push((next, state, change, ...args) => change(state, ...args))
 
-  const middlewareChain = middleware.reduceRight((acc, mw) => {
-    const next = acc[0]
-    acc.unshift((state, change, ...args) => {
+  const updater = middleware.reduceRight((chain, mw) => {
+    const next = chain[0]
+    chain.unshift((state, change, ...args) => {
       return mw(next, state, change, ...args)
     })
-    return acc
-  }, [])[0]
+    return chain
+  }, []).shift()
 
   return {
     getState() {
@@ -26,7 +27,7 @@ export function createStore(initialState, middleware = []) {
       }
 
       const oldState = state
-      state = middlewareChain(state, change, ...args)
+      state = updater(state, change, ...args)
 
       if (state === oldState) {
         return
@@ -36,6 +37,10 @@ export function createStore(initialState, middleware = []) {
     },
 
     subscribe(subscriber) {
+      if (typeof subscriber !== "function") {
+        throw new Error("subscriber must be a function")
+      }
+
       subscribers.add(subscriber)
 
       return function unsubscribe() {

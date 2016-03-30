@@ -69,7 +69,7 @@ test("middleware", t => {
 
   const setStateTo2 = () => 2
   const changeArg = "some argument"
-  const logger = (next, state, change, ...args) => {
+  const middleware = (next, state, change, ...args) => {
     t.pass("is called when a change is dispatched")
     t.equal(state, store.getState(),
       "is passed the store state")
@@ -81,6 +81,6 @@ test("middleware", t => {
     return next(state, change, ...args)
   }
 
-  const store = createStore(1, [ logger ])
+  const store = createStore(1, [ middleware ])
   store.dispatch(setStateTo2, changeArg)
 })
