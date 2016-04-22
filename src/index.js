@@ -6,7 +6,9 @@ export function createStore(initialState, middleware = []) {
   const subscribers = new Set()
 
   // Final middleware, simply applies the change to the state
-  middleware.push((next, state, change, ...args) => change(state, ...args))
+  middleware.push(function finalize(next, state, change, ...args) {
+    return change(state, ...args)
+  })
 
   const updater = middleware.reduceRight((chain, mw) => {
     const next = chain[0]
