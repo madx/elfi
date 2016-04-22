@@ -11,12 +11,12 @@
 
 ---
 
-## CONTRIBUTING
+## Contributing
 
 * ⇄ Pull requests and ★ Stars are always welcome.
 * For bugs and feature requests, please create an issue.
 * Pull requests must be accompanied by passing automated tests (`$ npm test`).
 
-## [LICENSE](LICENSE)
+## [License](LICENSE)
 
 [blogpost]: http://madx.me/articles/a-simpler-alternative-to-flux-and-redux.html
