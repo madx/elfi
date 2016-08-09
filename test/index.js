@@ -1,6 +1,10 @@
 import { createStore } from "../src"
 import test from "tape"
 
+function nextState(store) {
+  return store.dispatch(() => store.getState() + 1)
+}
+
 test("createStore", t => {
   const initialState = {}
   const store = createStore(initialState)
@@ -22,26 +26,26 @@ test("subscribe", t => {
   const unsubscribe = store.subscribe(() => {
     t.pass("adds a subscriber to be called upon dispatch")
   })
-  store.dispatch(() => 2)
+  nextState(store)
 
   unsubscribe()
-  store.dispatch(() => 3)
+  nextState(store)
   t.pass("returns a function that can be used to stop subscribing")
 
   const subscriber = () => t.pass("ignores duplicate subscribers")
   store.subscribe(subscriber)
   store.subscribe(subscriber)
-  store.dispatch(() => 4)
+  nextState(store)
 })
 
 test("dispatch", t => {
   const store = createStore(1)
 
-  store.dispatch(() => 2)
+  nextState(store)
   t.equal(2, store.getState(),
     "updates the state with the result of the dispatched change")
 
-  store.dispatch(s => s + 1)
+  nextState(store)
   t.equal(3, store.getState(),
     "passes the current state to the dispatched change")
 
@@ -54,7 +58,7 @@ test("dispatch", t => {
     t.equal(5, newState, "passes the new to the subscriber")
     t.equal(4, oldState, "passes the old state to the subscriber")
   })
-  store.dispatch(s => s + 1)
+  nextState(store)
 
   store.subscribe(() => {
     t.fail("does not notifies subscribers if the state does not change")
