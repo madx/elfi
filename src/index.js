@@ -35,7 +35,9 @@ export function createStore(initialState, middleware = []) {
         return
       }
 
-      subscribers.forEach((subscriber) => subscriber(state, oldState))
+      subscribers.forEach((subscriber) => {
+        setTimeout(() => subscriber(state, oldState), 0)
+      })
     },
 
     subscribe(subscriber) {
