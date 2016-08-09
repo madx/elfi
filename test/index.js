@@ -45,18 +45,18 @@ test("dispatch", t => {
   t.equal(2, store.getState(),
     "updates the state with the result of the dispatched change")
 
-  nextState(store)
-  t.equal(3, store.getState(),
+  store.dispatch(s => s - 1)
+  t.equal(1, store.getState(),
     "passes the current state to the dispatched change")
 
   store.dispatch((s, i) => s + i, 1)
-  t.equal(4, store.getState(),
+  t.equal(2, store.getState(),
     "passes extra arguments to the dispatched change")
 
   store.subscribe((newState, oldState) => {
     t.pass("notifies subscribers if the state changes")
-    t.equal(5, newState, "passes the new to the subscriber")
-    t.equal(4, oldState, "passes the old state to the subscriber")
+    t.equal(3, newState, "passes the new to the subscriber")
+    t.equal(2, oldState, "passes the old state to the subscriber")
   })
   nextState(store)
 
