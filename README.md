@@ -1,4 +1,4 @@
-# Elfi
+# [![Elfi](https://rawgit.com/madx/elfi/master/images/logo.svg)](https://github.com/madx/elfi)
 
 > An elegant state container for your JavaScript applications
 
