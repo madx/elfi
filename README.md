@@ -27,7 +27,7 @@ $ npm install elfi
 
 ## Usage
 
-**[Read the documentation][guide]**
+**[Read the documentation][doc:guide]**
 
 ## Contributing
 
