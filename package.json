@@ -6,8 +6,8 @@
   "scripts": {
     "clean": "rimraf lib",
     "lint": "eslint src/ test/",
-    "test": "babel-tape-runner test/",
-    "build": "babel src --out-dir lib",
+    "test": "babel-tape-runner test/*.js test/**/*.js",
+    "build": "babel src --out-dir .",
     "check": "npm run lint && npm run test",
     "prepare": "npm run clean && npm run check && npm run build"
   },
