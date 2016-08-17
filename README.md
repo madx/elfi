@@ -1,11 +1,11 @@
-# [![Elfi](https://rawgit.com/madx/elfi/master/images/logo.svg)](https://github.com/madx/elfi)
+# [![elfi](https://rawgit.com/madx/elfi/master/images/logo.svg)](https://github.com/madx/elfi)
 
 > An elegant state container for your JavaScript applications
 
 [![npm version](https://img.shields.io/npm/v/elfi.svg?style=flat-square)](https://github.com/madx/elfi/master/CHANGELOG.md)
 [![npm downloads](https://img.shields.io/npm/dm/elfi.svg?style=flat-square)](https://www.npmjs.com/package/elfi)
 
-Elfi is a state container for JavaScript applications. It takes its roots in
+*elfi* is a state container for JavaScript applications. It takes its roots in
 libraries such as [Flux][flux] and [Redux][redux], but strives to remain simple
 and avoid boilerplate code.
 
@@ -31,9 +31,9 @@ $ npm install elfi
 
 ## Contributing
 
-* ⇄ Pull requests and ★ Stars are always welcome.
+* ⇄ Pull Requests and ★ Stars are always welcome.
 * For bugs and feature requests, please create an issue.
-* Pull requests must be accompanied by passing automated tests (`$ npm test`).
+* Pull Requests must ensure that automated checks pass (`$ npm run check`).
 
 ## [License](LICENSE)
 
