@@ -41,5 +41,5 @@ $ npm install elfi
 [flux]: https://github.com/facebook/flux
 [redux]: https://github.com/reactjs/redux
 [immutable]: https://facebook.github.io/immutable-js/
-[doc:guide]: doc/README.md
-[doc:middleware]: doc/middleware/README.md
+[doc:guide]: doc/guide.md
+[doc:middleware]: doc/middleware.md
