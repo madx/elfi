@@ -11,7 +11,9 @@ export class Provider extends React.Component {
     super(props, context)
 
     this.store = props.store
-    this.state = this.store.getState()
+    this.state = {
+      storeState: this.store.getState(),
+    }
   }
 
   componentDidMount() {
@@ -25,7 +27,7 @@ export class Provider extends React.Component {
   handleStoreUpdate() {
     // We always setState here because elfi skips updating us if the underlying
     // state hasn't changed, so we only receive real store updates.
-    this.setState(this.store.getState())
+    this.setState({ storeState: this.store.getState() })
   }
 
   getChildContext() {
