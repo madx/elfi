@@ -126,5 +126,8 @@ Calling `next` chains to the next middleware piece, or to the internal
 dispatching mechanism. You should always return a valid state in your middleware
 or the internal state of your store will take the value of `undefined`.
 
+*elfi* ships with some builtin middleware for common tasks, you can get more
+information about it in the [middleware documentation](./middleware.md).
+
 [flux]: https://github.com/facebook/flux
 [redux]: https://github.com/reactjs/redux
