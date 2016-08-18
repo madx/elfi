@@ -105,9 +105,6 @@ A middleware is a function (again!) that takes at least 3 arguments:
 - The change function that is being dispatched,
 - And any extra arguments to pass to the change.
 
-You define what middleware you want to use at store creation time. `createStore`
-takes a second argument which is an array of middleware functions to use.
-
 Here's an example of a simple logging middleware:
 
 ```js
@@ -116,6 +113,13 @@ function loggerMiddleware(next, oldState, change, ...args) {
   console.log(change.name, oldState, newState)
   return newState
 }
+```
+
+You define what middleware you want to use at store creation time. `createStore`
+takes a second argument which is an array of middleware functions to use:
+
+```js
+const store = createStore(1, [loggerMiddleware])
 ```
 
 Calling `next` chains to the next middleware piece, or to the internal
