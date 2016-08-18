@@ -4,7 +4,7 @@
   "description": "An elegant and lightweight Flux implementation",
   "main": "./index.js",
   "scripts": {
-    "clean": "rimraf lib",
+    "clean": "rimraf index.js react.js middleware/",
     "lint": "eslint src/ test/",
     "test": "babel-tape-runner test/*.js test/**/*.js",
     "build": "babel src --out-dir .",
