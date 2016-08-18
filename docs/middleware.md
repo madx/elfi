@@ -1,4 +1,4 @@
-# builtin middleware
+# Builtin middleware
 
 *elfi* provides some builtin middleware. You'll find documentation about them in
 this document.
@@ -53,7 +53,7 @@ of that object. You will probably want to define how to set the version and for
 this you can pass a custom setter function to `createVersioningMiddleware`.
 
 It will be called with the new state as the sole argument. Here's an example
-with [Immutable.js][immutable]
+with [Immutable.js][immutable]:
 
 ```js
 import Immutable from "immutable"
