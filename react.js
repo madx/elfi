@@ -34,7 +34,9 @@ var Provider = exports.Provider = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Provider).call(this, props, context));
 
     _this.store = props.store;
-    _this.state = _this.store.getState();
+    _this.state = {
+      storeState: _this.store.getState()
+    };
     return _this;
   }
 
@@ -57,7 +59,7 @@ var Provider = exports.Provider = function (_React$Component) {
     value: function handleStoreUpdate() {
       // We always setState here because elfi skips updating us if the underlying
       // state hasn't changed, so we only receive real store updates.
-      this.setState(this.store.getState());
+      this.setState({ storeState: this.store.getState() });
     }
   }, {
     key: "getChildContext",
