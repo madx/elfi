@@ -1,4 +1,4 @@
-# [![elfi](https://rawgit.com/madx/elfi/master/images/logo.svg)](https://github.com/madx/elfi)
+# [![elfi](https://rawgit.com/madx/elfi/master/docs/images/logo.svg)](https://github.com/madx/elfi)
 
 > An elegant state container for your JavaScript applications
 
@@ -10,7 +10,7 @@ libraries such as [Flux][flux] and [Redux][redux], but strives to remain simple
 and avoid boilerplate code.
 
 It only takes a few minutes to [learn][doc:guide], works great with
-[Immutable.js][immutable] and is easy to extend thanks to
+[Immutable.js][immutable] and [React][doc:react], and is easy to extend using
 [middleware][doc:middleware].
 
 ---
@@ -43,3 +43,4 @@ $ npm install elfi
 [immutable]: https://facebook.github.io/immutable-js/
 [doc:guide]: docs/guide.md
 [doc:middleware]: docs/middleware.md
+[doc:react]: docs/react.md
