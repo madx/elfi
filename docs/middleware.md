@@ -1,4 +1,9 @@
-# Builtin middleware
+---
+layout: page
+title: Built-in middleware
+---
+
+# Built-in middleware
 
 *elfi* provides some builtin middleware. You'll find documentation about them in
 this document.

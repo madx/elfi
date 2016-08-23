@@ -1,3 +1,8 @@
+---
+layout: page
+title: React bindings
+---
+
 # React bindings
 
 *elfi* ships with some React bindings so you can quickly start working on an
