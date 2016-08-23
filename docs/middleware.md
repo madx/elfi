@@ -8,7 +8,7 @@ title: Built-in middleware
 *elfi* provides some builtin middleware. You'll find documentation about them in
 this document.
 
-## logger ([source](../src/middleware/logger.js))
+## logger ([source](https://github.com/madx/elfi/blob/master/src/middleware/logger.js)
 
 This middleware is used to log each change to whatever logging system you are
 using (a simple console.log by default)
@@ -39,7 +39,7 @@ const logger = createLoggerMiddleware(({oldState}) => console.log(oldState))
 const store = createStore(1, [logger])
 ```
 
-## versioning ([source](../src/middleware/versioning.js))
+## versioning ([source](https://github.com/madx/elfi/blob/master/src/middleware/versioning.js)
 
 This middleware is used to add a version number to the state without triggering
 another state change.
