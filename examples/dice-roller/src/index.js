@@ -87,5 +87,5 @@ ui.rollBtn.addEventListener("click", (ev) => {
 })
 
 // Bootstrap
-rollDice(store)
+ui.dice.textContent = store.getState().roll.join(" ")
 

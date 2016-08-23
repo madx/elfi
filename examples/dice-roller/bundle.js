@@ -5187,6 +5187,6 @@ ui.rollBtn.addEventListener("click", function (ev) {
 });
 
 // Bootstrap
-rollDice(store);
+ui.dice.textContent = store.getState().roll.join(" ");
 
 },{"elfi":1,"elfi/middleware/logger":2,"immutable":3}]},{},[4]);
