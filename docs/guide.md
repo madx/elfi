@@ -1,3 +1,8 @@
+---
+layout: page
+title: Using elfi
+---
+
 # Using elfi
 
 This guide details the basic concepts of *elfi* and it's usage.
