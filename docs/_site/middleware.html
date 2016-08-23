@@ -1,0 +1,106 @@
+<!doctype html>
+<!--[if IE]><![endif]-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>elfi - Built-in middleware</title>
+  <meta name="viewport" content="width=device-width" />
+  <meta property="og:title" content="elfi - Built-in middleware" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://madx.github.io/elfi/middleware.html" />
+  <meta property="og:description" content="An elegant state container for your JavaScript applications" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro" />
+  <link rel="stylesheet" href="/elfi/css/common.css" />
+  <link rel="stylesheet" href="/elfi/css/syntax.css" />
+  <link rel="stylesheet" href="/elfi/css/page.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="/elfi/">
+        <img src="/elfi/images/logo.png" alt="elfi" />
+      </a>
+    </h1>
+  </header>
+  <article>
+    <h1 id="built-in-middleware">Built-in middleware</h1>
+
+<p><em>elfi</em> provides some builtin middleware. You’ll find documentation about them in
+this document.</p>
+
+<h2 id="logger-sourcesrcmiddlewareloggerjs">logger (<a href="../src/middleware/logger.js">source</a>)</h2>
+
+<p>This middleware is used to log each change to whatever logging system you are
+using (a simple console.log by default)</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span><span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">"elfi"</span>
+<span class="kr">import</span> <span class="nx">createLoggerMiddleware</span> <span class="nx">from</span> <span class="s2">"elfi/middleware/logger"</span>
+
+<span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLoggerMiddleware</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="nx">logger</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<p>You can define a custom logger by passing a function to
+<code class="highlighter-rouge">createLoggerMiddleware</code>. This function accepts a single argument which is
+object with the following shape <code class="highlighter-rouge"><span class="p">{</span><span class="err">oldState,</span><span class="w"> </span><span class="err">newState,</span><span class="w"> </span><span class="err">change</span><span class="p">}</span></code>.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span><span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">"elfi"</span>
+<span class="kr">import</span> <span class="nx">createLoggerMiddleware</span> <span class="nx">from</span> <span class="s2">"elfi/middleware/logger"</span>
+
+<span class="kd">function</span> <span class="nx">logOldState</span><span class="p">({</span><span class="nx">oldState</span><span class="p">})</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">oldState</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">createLoggerMiddleware</span><span class="p">(({</span><span class="nx">oldState</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">oldState</span><span class="p">))</span>
+
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="nx">logger</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<h2 id="versioning-sourcesrcmiddlewareversioningjs">versioning (<a href="../src/middleware/versioning.js">source</a>)</h2>
+
+<p>This middleware is used to add a version number to the state without triggering
+another state change.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span><span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">"elfi"</span>
+<span class="kr">import</span> <span class="nx">createVersioningMiddleware</span> <span class="nx">from</span> <span class="s2">"elfi/middleware/versioning"</span>
+
+<span class="kr">const</span> <span class="nx">versioning</span> <span class="o">=</span> <span class="nx">createVersioningMiddleware</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="nx">versioning</span><span class="p">])</span>
+</code></pre>
+</div>
+
+<p>By default, it acts as if state is a simple object and sets the <code class="highlighter-rouge">version</code> field
+of that object. You will probably want to define how to set the version and for
+this you can pass a custom setter function to <code class="highlighter-rouge">createVersioningMiddleware</code>.</p>
+
+<p>It will be called with the new state as the sole argument. Here’s an example
+with <a href="https://facebook.github.io/immutable-js/">Immutable.js</a>:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">Immutable</span> <span class="nx">from</span> <span class="s2">"immutable"</span>
+<span class="kr">import</span> <span class="p">{</span><span class="nx">createStore</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">"elfi"</span>
+<span class="kr">import</span> <span class="nx">createVersioningMiddleware</span> <span class="nx">from</span> <span class="s2">"elfi/middleware/versioning"</span>
+
+<span class="kr">const</span> <span class="nx">versioning</span> <span class="o">=</span> <span class="nx">createVersioningMiddleware</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">((</span><span class="nx">state</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"version"</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">))</span>
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="k">new</span> <span class="nx">Immutable</span><span class="p">.</span><span class="nx">Map</span><span class="p">(),</span> <span class="p">[</span><span class="nx">versioning</span><span class="p">])</span>
+</code></pre>
+</div>
+
+
+  </article>
+  <footer>
+    © François Vaux
+    (<a href="https://github.com/madx">madx</a>)
+    - 2016
+  </footer>
+</body>
+</html>
+

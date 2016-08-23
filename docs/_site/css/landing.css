@@ -1,0 +1,26 @@
+article blockquote {
+  margin: 3rem auto;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+article hr {
+  width: 50%;
+  margin: 2rem auto;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+article hr + ul {
+  font-size: 1.5rem;
+}
+
+article hr + ul li {
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+article hr + ul li:last-child {
+  margin-right: 0;
+}

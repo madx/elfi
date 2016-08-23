@@ -1,0 +1,20 @@
+body {
+  margin: 5rem auto;
+  max-width: 51rem;
+  color: #444;
+  font-family: 'Lato', serif;
+}
+
+a:link, a:visited {
+  color: #36a3c6;
+}
+
+a:hover, a:focus, a:active {
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #999;
+}

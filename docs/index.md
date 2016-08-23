@@ -1,6 +1,6 @@
 ---
 layout: landing
-title: elfi - An elegant state container for your JavaScript applications
+title: An elegant state container for your JavaScript applications
 ---
 
 > *elfi* is a state container for JavaScript applications. It takes its roots
@@ -9,17 +9,15 @@ title: elfi - An elegant state container for your JavaScript applications
 
 ---
 
-**[Guide][doc:guide]**
-|
-**[Middleware][doc:middleware]**
-|
-**[React][doc:react]**
+* **[Guide][doc:guide]**
+* \|
+* **[Middleware][doc:middleware]**
+* \|
+* **[React][doc:react]**
 
 ---
 
-**[Read the initial blog post!][blogpost]**
-
----
+[Read the initial blog post!][blogpost]
 
 [blogpost]: http://madx.me/articles/a-simpler-alternative-to-flux-and-redux.html
 [flux]: https://github.com/facebook/flux

@@ -1,0 +1,104 @@
+<!doctype html>
+<!--[if IE]><![endif]-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>elfi - React bindings</title>
+  <meta name="viewport" content="width=device-width" />
+  <meta property="og:title" content="elfi - React bindings" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://madx.github.io/elfi/react.html" />
+  <meta property="og:description" content="An elegant state container for your JavaScript applications" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro" />
+  <link rel="stylesheet" href="/elfi/css/common.css" />
+  <link rel="stylesheet" href="/elfi/css/syntax.css" />
+  <link rel="stylesheet" href="/elfi/css/page.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <a href="/elfi/">
+        <img src="/elfi/images/logo.png" alt="elfi" />
+      </a>
+    </h1>
+  </header>
+  <article>
+    <h1 id="react-bindings">React bindings</h1>
+
+<p><em>elfi</em> ships with some React bindings so you can quickly start working on an
+application using both of them. They are available in the <code class="highlighter-rouge">elfi/react</code> module.</p>
+
+<h2 id="storeshape"><code class="highlighter-rouge">storeShape</code></h2>
+
+<p>The <code class="highlighter-rouge">storeShape</code> object allows you to specify that a property or a context
+element of a component should behave like a store, which means it has the
+<code class="highlighter-rouge">dispatch</code>, <code class="highlighter-rouge">getState</code> and <code class="highlighter-rouge">subscribe</code> methods available.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span><span class="nx">storeShape</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">"elfi/react"</span>
+
+<span class="kd">function</span> <span class="nx">Counter</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">store</span>
+
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">store</span><span class="p">.</span><span class="nx">getState</span><span class="p">()}</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="p">}</span>
+
+<span class="nx">MyComponent</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">store</span><span class="p">:</span> <span class="nx">storeShape</span><span class="p">.</span><span class="nx">isRequired</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="provider"><code class="highlighter-rouge">Provider</code></h2>
+
+<p>The <code class="highlighter-rouge">Provider</code> is used as a container component that will trigger renders of its
+children every time the store is updated. It also passes the <code class="highlighter-rouge">store</code> to its
+children through context.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Root.js</span>
+<span class="kd">function</span> <span class="nx">Root</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/Provider</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// App.js</span>
+<span class="kd">function</span> <span class="nx">App</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// App has access to the store through context</span>
+  <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">store</span>
+
+  <span class="kd">function</span> <span class="nx">increment</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">s</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">onClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">increment</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">store</span><span class="p">.</span><span class="nx">getState</span><span class="p">()}</span><span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Increment</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">App</span><span class="p">.</span><span class="nx">contextTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">store</span><span class="p">:</span> <span class="nx">storeShape</span><span class="p">.</span><span class="nx">isRequired</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+  </article>
+  <footer>
+    © François Vaux
+    (<a href="https://github.com/madx">madx</a>)
+    - 2016
+  </footer>
+</body>
+</html>
+
