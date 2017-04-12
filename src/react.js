@@ -7,14 +7,7 @@ export const storeShape = PropTypes.shape({
 })
 
 export class Provider extends React.Component {
-  constructor(props, context) {
-    super(props, context)
-
-    this.store = props.store
-    this.state = {
-      storeState: this.store.getState(),
-    }
-  }
+  store = this.props.store
 
   componentDidMount() {
     this.unsubscribe = this.store.subscribe(() => this.handleStoreUpdate())
@@ -25,9 +18,10 @@ export class Provider extends React.Component {
   }
 
   handleStoreUpdate() {
-    // We always setState here because elfi skips updating us if the underlying
-    // state hasn't changed, so we only receive real store updates.
-    this.setState({ storeState: this.store.getState() })
+    // We always forceUpdate here because elfi skips updating us if the
+    // underlying state hasn't changed, so we only receive updates when data
+    // actually changed.
+    this.forceUpdate()
   }
 
   getChildContext() {

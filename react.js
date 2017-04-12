@@ -28,16 +28,18 @@ var storeShape = exports.storeShape = _react.PropTypes.shape({
 var Provider = exports.Provider = function (_React$Component) {
   _inherits(Provider, _React$Component);
 
-  function Provider(props, context) {
+  function Provider() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Provider);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Provider).call(this, props, context));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.store = props.store;
-    _this.state = {
-      storeState: _this.store.getState()
-    };
-    return _this;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.store = _this.props.store, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Provider, [{
@@ -57,9 +59,10 @@ var Provider = exports.Provider = function (_React$Component) {
   }, {
     key: "handleStoreUpdate",
     value: function handleStoreUpdate() {
-      // We always setState here because elfi skips updating us if the underlying
-      // state hasn't changed, so we only receive real store updates.
-      this.setState({ storeState: this.store.getState() });
+      // We always forceUpdate here because elfi skips updating us if the
+      // underlying state hasn't changed, so we only receive updates when data
+      // actually changed.
+      this.forceUpdate();
     }
   }, {
     key: "getChildContext",

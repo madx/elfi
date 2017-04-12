@@ -1,5 +1,7 @@
 # v1.1.0 (in development)
 
+- react: Stop storing the store state in the `Provider`, use `forceUpdate`
+  instead
 - Use the `latest` Babel preset
 - Remove the use of `setTimeout` when processing subscribers
 
