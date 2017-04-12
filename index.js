@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createStore = createStore;
 function createStore(initialState) {
-  var middleware = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+  var middleware = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
   if (!initialState) {
     throw new Error("Missing initial state in store creation");

@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createLoggerMiddleware;
 var DEFAULT_LOGGER = function defaultLogger(_ref) {
-  var oldState = _ref.oldState;
-  var newState = _ref.newState;
-  var change = _ref.change;
+  var oldState = _ref.oldState,
+      newState = _ref.newState,
+      change = _ref.change;
 
   console.log(change.name, oldState, newState);
 };
 
 function createLoggerMiddleware() {
-  var logger = arguments.length <= 0 || arguments[0] === undefined ? DEFAULT_LOGGER : arguments[0];
+  var logger = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_LOGGER;
 
   return function loggerMiddleware(next, oldState, change) {
     for (var _len = arguments.length, args = Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {

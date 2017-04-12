@@ -10,7 +10,7 @@ var DEFAULT_SETTER = function setter(newState) {
 };
 
 function createVersioningMiddleware() {
-  var setter = arguments.length <= 0 || arguments[0] === undefined ? DEFAULT_SETTER : arguments[0];
+  var setter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_SETTER;
 
   return function versioningMiddleware(next, state, change) {
     for (var _len = arguments.length, args = Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
