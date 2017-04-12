@@ -1,5 +1,7 @@
 # [![elfi](https://rawgit.com/madx/elfi/master/docs/images/logo.svg)](https://github.com/madx/elfi)
 
+[![Join the chat at https://gitter.im/madx/elfi](https://badges.gitter.im/madx/elfi.svg)](https://gitter.im/madx/elfi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > An elegant state container for your JavaScript applications
 
 [![npm version](https://img.shields.io/npm/v/elfi.svg?style=flat-square)](https://github.com/madx/elfi/master/CHANGELOG.md)
