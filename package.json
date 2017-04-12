@@ -42,5 +42,8 @@
     "extends": [
       "eslint-config-i-am-meticulous"
     ]
+  },
+  "peerDependencies": {
+    "react": "^15.5.4"
   }
 }
