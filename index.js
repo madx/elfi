@@ -4,6 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.createStore = createStore;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function createStore(initialState) {
   var middleware = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
@@ -49,7 +52,7 @@ function createStore(initialState) {
         args[_key3 - 1] = arguments[_key3];
       }
 
-      state = updater.apply(undefined, [state, change].concat(args));
+      state = updater.apply(undefined, [state, change].concat(_toConsumableArray(args)));
 
       if (state === oldState) {
         return;

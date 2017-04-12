@@ -1,6 +1,7 @@
+import test from "tape"
+
 import { createStore } from "../../src"
 import createLoggerMiddleware from "../../src/middleware/logger"
-import test from "tape"
 
 test("createLoggerMiddleware(logger)", t => {
   t.plan(3)

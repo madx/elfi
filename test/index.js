@@ -1,5 +1,6 @@
-import { createStore } from "../src"
 import test from "tape"
+
+import { createStore } from "../src"
 
 function nextState(store) {
   return store.dispatch(() => store.getState() + 1)

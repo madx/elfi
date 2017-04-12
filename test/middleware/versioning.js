@@ -1,6 +1,7 @@
+import test from "tape"
+
 import { createStore } from "../../src"
 import createVersioningMiddleware from "../../src/middleware/versioning"
-import test from "tape"
 
 test("createVersioningMiddleware()", t => {
   t.plan(3)
