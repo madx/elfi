@@ -15,7 +15,7 @@ It only takes a few minutes to [learn][doc:guide], works great with
 
 ---
 
-**[Read the initial blog post!][blogpost]**
+**[Read the documentation][website]**
 
 ---
 
@@ -37,6 +37,13 @@ $ npm install elfi
 
 ## [License](LICENSE)
 
+---
+
+If interested, you can also read the (now quite obsolete) **[initial blog post][blogpost]**.
+
+---
+
+[website]: http://madx.github.io/elfi/
 [blogpost]: http://madx.me/articles/a-simpler-alternative-to-flux-and-redux.html
 [flux]: https://github.com/facebook/flux
 [redux]: https://github.com/reactjs/redux
