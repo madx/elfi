@@ -1,4 +1,4 @@
-# v1.1.0 (in development)
+# v1.1.0
 
 - react: Stop storing the store state in the `Provider`, use `forceUpdate`
   instead
