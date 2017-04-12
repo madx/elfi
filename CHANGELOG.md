@@ -1,3 +1,7 @@
+# v1.1.0 (in development)
+
+- Remove the use of `setTimeout` when processing subscribers
+
 # v1.0.1
 
 - Add versioning and logger middleware

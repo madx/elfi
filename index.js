@@ -56,9 +56,7 @@ function createStore(initialState) {
       }
 
       subscribers.forEach(function (subscriber) {
-        setTimeout(function () {
-          return subscriber(state, oldState);
-        }, 0);
+        return subscriber(state, oldState);
       });
     },
     subscribe: function subscribe(subscriber) {
