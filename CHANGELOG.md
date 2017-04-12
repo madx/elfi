@@ -1,3 +1,11 @@
+# v1.0.1
+
+- Add versioning and logger middleware
+- Add documentation and website
+- Add examples
+
+# v1.0.0 (broken, see v1.0.1)
+
 # v0.3.0
 
 - Don't wait for subscribers to execute when performing updates
