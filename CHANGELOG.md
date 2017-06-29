@@ -1,3 +1,7 @@
+# v1.2.0
+
+- react: Add a consumer HOC
+
 # v1.1.0
 
 - react: Stop storing the store state in the `Provider`, use `forceUpdate`

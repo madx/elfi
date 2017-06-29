@@ -43,3 +43,17 @@ Provider.propTypes = {
 Provider.childContextTypes = {
   store: storeShape.isRequired,
 }
+
+export function connect(WrappedComponent) {
+  const ConnectedComponent = (props, context) => (
+    <WrappedComponent {...props} store={context.store} />
+  )
+
+  ConnectedComponent.contextTypes = {
+    store: storeShape.isRequired,
+  }
+
+  ConnectedComponent.displayName = `Connect$${WrappedComponent.name}`
+
+  return ConnectedComponent
+}
