@@ -1,6 +1,7 @@
 # v1.2.0
 
 - react: Add a consumer HOC
+- react: Remove deprecation warnings for React 16
 
 # v1.1.0
 
