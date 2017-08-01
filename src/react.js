@@ -8,6 +8,15 @@ export const storeShape = PropTypes.shape({
 })
 
 export class Provider extends React.Component {
+  static propTypes = {
+    store: storeShape.isRequired,
+    children: PropTypes.element.isRequired,
+  }
+
+  static childContextTypes = {
+    store: storeShape.isRequired,
+  }
+
   store = this.props.store
 
   componentDidMount() {
@@ -34,15 +43,6 @@ export class Provider extends React.Component {
   render() {
     return Children.only(this.props.children)
   }
-}
-
-Provider.propTypes = {
-  store: storeShape.isRequired,
-  children: PropTypes.element.isRequired,
-}
-
-Provider.childContextTypes = {
-  store: storeShape.isRequired,
 }
 
 export function connect(WrappedComponent) {
