@@ -46,8 +46,12 @@ export class Provider extends React.Component {
 }
 
 export function connect(WrappedComponent) {
-  const ConnectedComponent = (props, context) => (
-    <WrappedComponent {...props} store={context.store} />
+  const ConnectedComponent = (props, { store }) => (
+    <WrappedComponent
+      {...props}
+      store={store}
+      storeState={store.getState()}
+    />
   )
 
   ConnectedComponent.contextTypes = {

@@ -97,8 +97,12 @@ Provider.childContextTypes = {
   store: storeShape.isRequired
 };
 function connect(WrappedComponent) {
-  var ConnectedComponent = function ConnectedComponent(props, context) {
-    return _react2.default.createElement(WrappedComponent, _extends({}, props, { store: context.store }));
+  var ConnectedComponent = function ConnectedComponent(props, _ref2) {
+    var store = _ref2.store;
+    return _react2.default.createElement(WrappedComponent, _extends({}, props, {
+      store: store,
+      storeState: store.getState()
+    }));
   };
 
   ConnectedComponent.contextTypes = {

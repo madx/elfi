@@ -1,3 +1,7 @@
+# v1.3.0
+
+- react: Pass the store state as a prop in the connect HOC
+
 # v1.2.0
 
 - react: Add a consumer HOC
