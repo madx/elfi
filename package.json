@@ -34,7 +34,9 @@
     "eslint": "^4.12.1",
     "eslint-config-i-am-meticulous": "^7.0.1",
     "rimraf": "^2.6.2",
-    "tape": "^4.8.0"
+    "tape": "^4.8.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",

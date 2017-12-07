@@ -1,3 +1,8 @@
+# v1.3.1
+
+- Switch to yarn
+- Update dependencies
+
 # v1.3.0
 
 - react: Pass the store state as a prop in the connect HOC
