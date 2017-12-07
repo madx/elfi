@@ -25,25 +25,28 @@
   "author": "François Vaux <madx@yapok.org> (https://github.com/madx)",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-tape-runner": "^2.0.1",
-    "eslint": "^3.19.0",
-    "eslint-config-i-am-meticulous": "^5.0.0",
-    "rimraf": "^2.6.1",
+    "eslint": "^4.12.1",
+    "eslint-config-i-am-meticulous": "^7.0.1",
+    "rimraf": "^2.6.2",
     "tape": "^4.8.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
       "eslint-config-i-am-meticulous"
-    ]
+    ],
+    "globals": {
+      "Set": true
+    }
   },
   "peerDependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1"
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
   }
 }
