@@ -1,3 +1,8 @@
+# v1.4.0
+
+- react: Listen for store updates in the `connect` function instead of the Provider
+- Use prettier for code formatting
+
 # v1.3.1
 
 - Switch to yarn

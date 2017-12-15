@@ -33,50 +33,20 @@ var storeShape = exports.storeShape = _propTypes2.default.shape({
   subscribe: _propTypes2.default.func.isRequired
 });
 
-var Provider = exports.Provider = function (_React$Component) {
-  _inherits(Provider, _React$Component);
+var Provider = exports.Provider = function (_React$PureComponent) {
+  _inherits(Provider, _React$PureComponent);
 
   function Provider() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, Provider);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.store = _this.props.store, _temp), _possibleConstructorReturn(_this, _ret);
+    return _possibleConstructorReturn(this, (Provider.__proto__ || Object.getPrototypeOf(Provider)).apply(this, arguments));
   }
 
   _createClass(Provider, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.unsubscribe = this.store.subscribe(function () {
-        return _this2.handleStoreUpdate();
-      });
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.unsubscribe();
-    }
-  }, {
-    key: "handleStoreUpdate",
-    value: function handleStoreUpdate() {
-      // We always forceUpdate here because elfi skips updating us if the
-      // underlying state hasn't changed, so we only receive updates when data
-      // actually changed.
-      this.forceUpdate();
-    }
-  }, {
     key: "getChildContext",
     value: function getChildContext() {
       return {
-        store: this.store
+        store: this.props.store
       };
     }
   }, {
@@ -87,7 +57,7 @@ var Provider = exports.Provider = function (_React$Component) {
   }]);
 
   return Provider;
-}(_react2.default.Component);
+}(_react2.default.PureComponent);
 
 Provider.propTypes = {
   store: storeShape.isRequired,
@@ -97,19 +67,53 @@ Provider.childContextTypes = {
   store: storeShape.isRequired
 };
 function connect(WrappedComponent) {
-  var ConnectedComponent = function ConnectedComponent(props, _ref2) {
-    var store = _ref2.store;
-    return _react2.default.createElement(WrappedComponent, _extends({}, props, {
-      store: store,
-      storeState: store.getState()
-    }));
+  var _class, _temp;
+
+  var mapStateToProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (storeState) {
+    return { storeState: storeState };
   };
 
-  ConnectedComponent.contextTypes = {
+  return _temp = _class = function (_React$Component) {
+    _inherits(_class, _React$Component);
+
+    function _class() {
+      _classCallCheck(this, _class);
+
+      return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var _this3 = this;
+
+        var store = this.context.store;
+        // We always forceUpdate here because elfi skips updating us if the
+        // underlying state hasn't changed, so we only receive updates when data
+        // actually changed.
+
+        this.unsubscribe = store.subscribe(function () {
+          return _this3.forceUpdate();
+        });
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        this.unsubscribe();
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var store = this.context.store;
+
+        var propsFromStore = mapStateToProps(store.getState(), store);
+
+        return _react2.default.createElement(WrappedComponent, _extends({}, this.props, propsFromStore, { store: store }));
+      }
+    }]);
+
+    return _class;
+  }(_react2.default.Component), _class.contextTypes = {
     store: storeShape.isRequired
-  };
-
-  ConnectedComponent.displayName = "Connect$" + WrappedComponent.name;
-
-  return ConnectedComponent;
+  }, _class.displayName = "Connect$" + WrappedComponent.name, _temp;
 }
