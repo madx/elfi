@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/elfi.svg?style=flat-square)](https://github.com/madx/elfi/master/CHANGELOG.md)
 [![npm downloads](https://img.shields.io/npm/dm/elfi.svg?style=flat-square)](https://www.npmjs.com/package/elfi)
-[![Join the chat on Discord](https://img.shields.io/discord/433885849227100162.svg))](https://discord.gg/cMkzd4J)
+[![Join the chat on Discord](https://img.shields.io/discord/433885849227100162.svg)](https://discord.gg/cMkzd4J)
 
 *elfi* is a state container for JavaScript applications. It takes its roots in
 libraries such as [Flux][flux] and [Redux][redux], but strives to remain simple
