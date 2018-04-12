@@ -69,3 +69,32 @@ App.contextTypes = {
   store: storeShape.isRequired
 }
 ```
+
+## `HoC`
+
+
+```javascript
+import React from "react"
+import PropTypes from "prop-types"
+import { storeShape } from "elfi/react"
+
+const connect = WrappedComponent => {
+  return class extends React.Component {
+    static contextTypes = {
+      store: storeShape.isRequired,
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} store={this.context.store} storeState={this.context.store.getState()} />
+    }
+  }
+}
+
+export default connect
+```
+
+How to use it:
+
+```javascript
+const connectedComponent = connect(Component)
+```
