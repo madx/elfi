@@ -15,6 +15,12 @@
     "type": "git",
     "url": "https://github.com/madx/elfi.git"
   },
+  "files": [
+    "index.js",
+    "react.js",
+    "src/*",
+    "docs/*"
+  ],
   "keywords": [
     "flux",
     "redux",
