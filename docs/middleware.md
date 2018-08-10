@@ -5,7 +5,7 @@ title: Built-in middleware
 
 # Built-in middleware
 
-*elfi* provides some builtin middleware. You'll find documentation about them in
+_elfi_ provides some builtin middleware. You'll find documentation about them in
 this document.
 
 ## logger ([source](https://github.com/madx/elfi/blob/master/src/middleware/logger.js))
@@ -14,7 +14,7 @@ This middleware is used to log each change to whatever logging system you are
 using (a simple console.log by default)
 
 ```js
-import {createStore} from "elfi"
+import { createStore } from "elfi"
 import createLoggerMiddleware from "elfi/middleware/logger"
 
 const logger = createLoggerMiddleware()
@@ -24,17 +24,17 @@ const store = createStore(1, [logger])
 
 You can define a custom logger by passing a function to
 `createLoggerMiddleware`. This function accepts a single argument which is
-object with the following shape `{oldState, newState, change}`.
+object with the following shape `{oldState, newState, change, args}`.
 
 ```js
-import {createStore} from "elfi"
+import { createStore } from "elfi"
 import createLoggerMiddleware from "elfi/middleware/logger"
 
-function logOldState({oldState}) {
+function logOldState({ oldState }) {
   console.log(oldState)
 }
 
-const logger = createLoggerMiddleware(({oldState}) => console.log(oldState))
+const logger = createLoggerMiddleware(({ oldState }) => console.log(oldState))
 
 const store = createStore(1, [logger])
 ```
@@ -45,7 +45,7 @@ This middleware is used to add a version number to the state without triggering
 another state change.
 
 ```js
-import {createStore} from "elfi"
+import { createStore } from "elfi"
 import createVersioningMiddleware from "elfi/middleware/versioning"
 
 const versioning = createVersioningMiddleware()
@@ -62,12 +62,12 @@ with [Immutable.js][immutable]:
 
 ```js
 import Immutable from "immutable"
-import {createStore} from "elfi"
+import { createStore } from "elfi"
 import createVersioningMiddleware from "elfi/middleware/versioning"
 
-const versioning = createVersioningMiddleware(state => (
-  state.set((state.get("version") || 0) + 1)
-))
+const versioning = createVersioningMiddleware(state =>
+  state.set((state.get("version") || 0) + 1),
+)
 const store = createStore(new Immutable.Map(), [versioning])
 ```
 

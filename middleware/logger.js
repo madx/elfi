@@ -21,7 +21,7 @@ function createLoggerMiddleware() {
     }
 
     var newState = next.apply(undefined, [oldState, change].concat(args));
-    logger({ oldState: oldState, newState: newState, change: change });
+    logger({ oldState: oldState, newState: newState, change: change, args: args });
     return newState;
   };
 }
