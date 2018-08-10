@@ -34,18 +34,18 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-tape-runner": "^2.0.1",
     "eslint": "^4.12.1",
     "eslint-config-i-am-meticulous": "^7.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
-    "prettier": "^1.9.2",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
+    "prettier": "^1.14.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
     "rimraf": "^2.6.2",
-    "tape": "^4.8.0"
+    "tape": "^4.9.1"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
