@@ -1,5 +1,5 @@
 export function createStore(initialState, middleware = []) {
-  if (!initialState) {
+  if (initialState === undefined) {
     throw new Error("Missing initial state in store creation")
   }
   let state = initialState
@@ -10,13 +10,15 @@ export function createStore(initialState, middleware = []) {
     return change(state, ...args)
   })
 
-  const updater = middleware.reduceRight((chain, mw) => {
-    const next = chain[0]
-    chain.unshift((state, change, ...args) => {
-      return mw(next, state, change, ...args)
-    })
-    return chain
-  }, []).shift()
+  const updater = middleware
+    .reduceRight((chain, mw) => {
+      const next = chain[0]
+      chain.unshift((state, change, ...args) => {
+        return mw(next, state, change, ...args)
+      })
+      return chain
+    }, [])
+    .shift()
 
   return {
     getState() {
