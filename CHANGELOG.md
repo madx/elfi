@@ -1,3 +1,13 @@
+# v2.0.0
+
+- core: Only throw an error when initialState is undefined
+- [BREAKING] react: Use the new Context API
+- Update docs
+
+# v1.4.1
+
+- logger: Pass the args to the logger function
+
 # v1.4.0
 
 - react: Listen for store updates in the `connect` function instead of the Provider

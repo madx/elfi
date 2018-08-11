@@ -5,11 +5,14 @@ title: Using elfi
 
 # Using elfi
 
-This guide details the basic concepts of *elfi* and its usage.
+This guide details the basic concepts of _elfi_ and its usage.
+
+For information about how to use _elfi_ in a React environment, please take a
+look at the [`elfi/react` docs](./react.md)
 
 ## Basic concepts
 
-*elfi* allows you to create a _store_ which holds the whole _state_ of your
+_elfi_ allows you to create a _store_ which holds the whole _state_ of your
 application. The state is updated by dispatching functions that return a new
 state based on the previous ones. Such functions are called _changes_, and they
 should be pure functions (_i.e._ having no side effects).
@@ -17,24 +20,24 @@ should be pure functions (_i.e._ having no side effects).
 If you are familiar with [Flux][flux] or [Redux][redux] this might sound
 familiar to you, but it strives to remain simple by eliminating most of the
 boilerplate that you would expect to find with them. There are no dispatchers,
-no reducers, no actions and no action creators in *elfi*, only simple functions.
+no reducers, no actions and no action creators in _elfi_, only simple functions.
 
 Finally, the store can accept _subscribers_ which are also functions and which
 are called when a state change occurs.
 
 ## Creating a store
 
-Creating your *elfi* store is done by importing `createStore` and calling it
+Creating your _elfi_ store is done by importing `createStore` and calling it
 with an initial state.
 
 ```js
-import {createStore} from "elfi"
+import { createStore } from "elfi"
 
 const store = createStore(1)
 ```
 
 In the example above, the state of our application is a number. This is
-perfectly valid and *elfi* enforces no specific type for the internal state of
+perfectly valid and _elfi_ enforces no specific type for the internal state of
 the store.
 
 You can query for the current state of the store using `getState`:
@@ -131,7 +134,7 @@ Calling `next` chains to the next middleware piece, or to the internal
 dispatching mechanism. You should always return a valid state in your middleware
 or the internal state of your store will take the value of `undefined`.
 
-*elfi* ships with some builtin middleware for common tasks, you can get more
+_elfi_ ships with some builtin middleware for common tasks, you can get more
 information about it in the [middleware documentation](./middleware.md).
 
 [flux]: https://github.com/facebook/flux

@@ -17,13 +17,11 @@ available.
 ```js
 import { storeShape } from "elfi/react"
 
-function Counter(props, context) {
-  const store = props.store
-
-  return <div>{store.getState()}</div>
+function Counter({ store }) {
+  return <p>{store.getState()}</p>
 }
 
-MyComponent.propTypes = {
+Counter.propTypes = {
   store: storeShape.isRequired,
 }
 ```
@@ -45,7 +43,7 @@ import ReactDOM from "react-dom"
 import { createStore } from "elfi"
 import { ElfiContext } from "elfi/react"
 
-import App from "./components/App"
+import Counter from "./Counter"
 
 const store = createStore(0) // Our state is a simple integer
 const root = document.getElementById("app-root")
@@ -56,7 +54,7 @@ store.subscribe(renderApp)
 function renderApp() {
   ReactDOM.render(
     <ElfiContext.Provider value={store}>
-      <App />
+      <Counter />
     </ElfiContext.Provider>,
     root,
   )
@@ -66,7 +64,8 @@ function renderApp() {
 In order to simplify consumption of store data in your components, _elfi_ ships
 with a `connect` _higher order component_ that does all the dirty work for you.
 It takes a component as a first argument and an function that maps store data to
-proops as a second argument.
+props as a second argument. This mapping function takes the store state and the
+store itself as arguments, and must return an object of props.
 
 Using the previous app bootstrap code, here's an example usage of the `connect`
 HOC to build a component:
@@ -77,7 +76,7 @@ import React from "react"
 import { connect } from "elfi/react"
 
 function Counter({ value }) {
-  return `Current value is ${value}`
+  return <p>Current value is {value}</p>
 }
 
 export default connect(
@@ -85,3 +84,45 @@ export default connect(
   value => ({ value }),
 )
 ```
+
+## Dispatching actions from components
+
+Dispatching actions from your React components is no different than using _elfi_
+outside of the React environment. To continue on our counter example, here's how
+you would increment the counter's value when clicking on it:
+
+```js
+// Counter.js
+import React from "react"
+import PropTypes from "prop-types"
+import { storeShape, connect } from "elfi/react"
+
+// Our increment action
+function increment(state) {
+  return state + 1
+}
+
+class Counter extends React.Component {
+  static propTypes = {
+    store: storeShape.isRequired,
+    value: PropTypes.number.isRequired,
+  }
+
+  handleClick = () => {
+    const { store } = this.props
+    store.dispatch(increment)
+  }
+
+  render() {
+    const { value } = this.props
+    return <p onClick={this.handleClick}>Current value is {value}</p>
+  }
+}
+
+export default connect(
+  Counter,
+  value => ({ value }),
+)
+```
+
+You can [try this demo online](https://codepen.io/madx/pen/MBLvPg)
