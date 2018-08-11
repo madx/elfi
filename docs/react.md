@@ -5,17 +5,17 @@ title: React bindings
 
 # React bindings
 
-*elfi* ships with some React bindings so you can quickly start working on an
+_elfi_ ships with some React bindings so you can quickly start working on an
 application using both of them. They are available in the `elfi/react` module.
 
 ## `storeShape`
 
-The `storeShape` object allows you to specify that a property or a context
-element of a component should behave like a store, which means it has the
-`dispatch`, `getState` and `subscribe` methods available.
+The `storeShape` object allows you to specify that a component's prop should be
+a store, which means it has the `dispatch`, `getState` and `subscribe` methods
+available.
 
 ```js
-import {storeShape} from "elfi/react"
+import { storeShape } from "elfi/react"
 
 function Counter(props, context) {
   const store = props.store
@@ -28,44 +28,60 @@ MyComponent.propTypes = {
 }
 ```
 
-## `Provider`
+## `ElfiContext` and `connect`
 
-The `Provider` is used as a container component that will trigger renders of its
-children every time the store is updated. It also passes the `store` to its
-children through context.
+_elfi_ ships with an integration for the official React Context API that's been
+available since React 16.3.0. To use it, you must wrap your app in the context
+provider `ElfiContext.Provider` and you can use `ElfiContext.Consumer` in your
+child components to consume store data.
+
+You'll also probably want to automatically trigger updates using the `subscribe`
+method from the store. Here is a typical app startup code using _elfi/react_:
 
 ```js
-// Root.js
-function Root(props) {
-  return (
-    <Provider store={props.store}>
+// app.js
+import React from "react"
+import ReactDOM from "react-dom"
+import { createStore } from "elfi"
+import { ElfiContext } from "elfi/react"
+
+import App from "./components/App"
+
+const store = createStore(0) // Our state is a simple integer
+const root = document.getElementById("app-root")
+
+document.addEventListener("DOMContentLoaded", renderApp)
+store.subscribe(renderApp)
+
+function renderApp() {
+  ReactDOM.render(
+    <ElfiContext.Provider value={store}>
       <App />
-    </Provider>
+    </ElfiContext.Provider>,
+    root,
   )
 }
+```
 
-// App.js
-function App(props, context) {
-  // App has access to the store through context
-  const store = context.store
+In order to simplify consumption of store data in your components, _elfi_ ships
+with a `connect` _higher order component_ that does all the dirty work for you.
+It takes a component as a first argument and an function that maps store data to
+proops as a second argument.
 
-  function increment(s) {
-    return s + 1
-  }
+Using the previous app bootstrap code, here's an example usage of the `connect`
+HOC to build a component:
 
-  function onClick() {
-    store.dispatch(increment)
-  }
+```js
+// Counter.js
+import React from "react"
+import { connect } from "elfi/react"
 
-  return (
-    <div>
-      <span>{store.getState()}</span>
-      <button onClick={onClick}>Increment</button>
-    </div>
-  )
+function Counter({ value }) {
+  return `Current value is ${value}`
 }
 
-App.contextTypes = {
-  store: storeShape.isRequired
-}
+export default connect(
+  Counter,
+  value => ({ value }),
+)
 ```
