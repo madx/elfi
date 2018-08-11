@@ -10,7 +10,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function createStore(initialState) {
   var middleware = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
-  if (!initialState) {
+  if (initialState === undefined) {
     throw new Error("Missing initial state in store creation");
   }
   var state = initialState;
