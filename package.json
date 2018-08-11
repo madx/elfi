@@ -15,19 +15,8 @@
     "type": "git",
     "url": "https://github.com/madx/elfi.git"
   },
-  "files": [
-    "index.js",
-    "react.js",
-    "src/*",
-    "docs/*"
-  ],
-  "keywords": [
-    "flux",
-    "redux",
-    "state",
-    "functional",
-    "immutable"
-  ],
+  "files": ["index.js", "react.js", "middleware/*", "src/*", "docs/*"],
+  "keywords": ["flux", "redux", "state", "functional", "immutable"],
   "author": "François Vaux <madx@yapok.org> (https://github.com/madx)",
   "license": "MIT",
   "devDependencies": {
@@ -49,9 +38,7 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": [
-      "eslint-config-i-am-meticulous"
-    ],
+    "extends": ["eslint-config-i-am-meticulous"],
     "globals": {
       "Set": true
     }
